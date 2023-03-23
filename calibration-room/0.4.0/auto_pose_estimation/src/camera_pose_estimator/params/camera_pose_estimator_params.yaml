@@ -1,0 +1,2 @@
+CAMERA_TOPIC: /cona/Sensor/RGB1
+CAMERA_TF: /camera_tf

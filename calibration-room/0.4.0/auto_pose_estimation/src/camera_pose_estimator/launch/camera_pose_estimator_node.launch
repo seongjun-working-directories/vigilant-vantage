@@ -1,0 +1,13 @@
+<launch>
+  <rosparam
+    ns="camera_pose_estimator"
+    command="load"
+    file="$(find camera_pose_estimator)/params/camera_pose_estimator_params.yaml"
+  />
+  <node
+    name="camera_pose_estimator"
+    pkg="camera_pose_estimator"
+    type="camera_pose_estimator"
+    output="screen"
+  />
+</launch>

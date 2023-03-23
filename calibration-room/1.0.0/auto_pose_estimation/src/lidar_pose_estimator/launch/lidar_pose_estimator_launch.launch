@@ -1,0 +1,32 @@
+<launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+    <arg name="port" value="9090"/>
+  </include>
+  <node
+    pkg="lidar_pose_estimator"
+    name="front_lidar_pose_estimator"
+    type="lidar_pose_estimator"
+    output="screen">
+    <!-- ns="front_lidar_pose_estimator"> -->
+    <rosparam param="LIDAR_TOPIC">/scan1</rosparam>
+    <rosparam param="LIDAR_IMAGE_1">/lidar_front_image_message_1</rosparam>
+    <rosparam param="LIDAR_IAMGE_2">/lidar_front_image_message_2</rosparam>
+    <rosparam param="LIDAR_REFERENCE">/lidar_front_reference</rosparam>
+    <rosparam param="LIDAR_CURRENT">/lidar_front_current</rosparam>
+    <rosparam param="LIDAR_TF">lidar_front_tf</rosparam>
+  </node>
+
+  <node
+    pkg="lidar_pose_estimator"
+    name="rear_lidar_pose_estimator"
+    type="lidar_pose_estimator"
+    output="screen">
+    <!-- ns="rear_lidar_pose_estimator"> -->
+      <rosparam param="LIDAR_TOPIC">/scan2</rosparam> value="/scan2" />
+      <rosparam param="LIDAR_IMAGE_1">/lidar_rear_image_message_1</rosparam>
+      <rosparam param="LIDAR_IAMGE_2">/lidar_rear_image_message_2</rosparam>
+      <rosparam param="LIDAR_REFERENCE">/lidar_rear_reference</rosparam>
+      <rosparam param="LIDAR_CURRENT">/lidar_rear_current</rosparam>
+      <rosparam param="LIDAR_TF">lidar_rear_tf</rosparam>
+  </node>
+</launch>

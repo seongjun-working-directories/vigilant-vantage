@@ -1,0 +1,44 @@
+<!--
+  pose_estimation_gui에서 해당 urdf 파일을 xml 형식으로 만든 뒤, 확장자를 urdf로 변경해줘야 함
+-->
+
+<robot name="cona">
+
+	<link name="base_link"/>
+	<link name="laser1"/>
+	<link name="laser2"/>
+	<link name="laser3"/>
+	<link name="laser_multi"/>
+	<link name="camera_link"/>
+
+	<joint name="robot2laser1" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser1"/>
+		<origin xyz="0.17 0 0" rpy="0 0 0" />
+	</joint>
+
+	<joint name="robot2laser2" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser2"/>
+		<origin xyz="-0.17 0 0" rpy="0 0 3.14" />
+	</joint>
+
+	<joint name="robot2laser3" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser3"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0 0.0 0" />
+	</joint>
+
+	<joint name="robot2laser_multi" type="fixed">
+		<parent link="base_link" />
+		<child link="laser_multi" />
+		<origin xyz="0 0 0" rpy="0 0 0" />
+	</joint>
+
+	<joint name="robot2depth" type="fixed">
+		<parent link="base_link"/>
+		<child link="camera_link"/>
+		<origin xyz="0.35 0.105 0.9" rpy="0 0.58 0" />
+	</joint>
+
+</robot>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot name="test">
+  <link name="base_link">
+  </link>
+  <link name="laser_link1">
+  </link>
+  <link name="laser_link2">
+  </link>
+  <link name="camera_link">
+  </link>
+
+  <!-- [TIPS] child 태그의 link 속성에는 frame_id가 대입됨 -->
+  <!-- [TIPS] frame id 정리 : laser_link1, laser_link2, camera_link -->
+  <!-- [TIPS] frame id는 lsm10_v2의 경우 launch 파일의 param에 설정되어 있음 -->
+  <joint name="camera_link" type="fixed">
+    <parent link="base_link" />
+    <child link="camera_link" />
+    <origin xyz="0.1475 0 0.06" rpy="3.14159 0 0" />
+  </joint>
+
+  <joint name="laser_link1" type="fixed">
+    <parent link="base_link" />
+    <child link="laser_link1" />
+    <origin xyz="0.1085 0.065 0.060" rpy="0 0 0.785398" />
+  </joint>
+
+  <joint name="laser_link2" type="fixed">
+    <parent link="base_link" />
+    <child link="laser_link2" />
+    <origin xyz="-0.1085 -0.065 0.060" rpy="0 0 3.92699" />
+  </joint>
+</robot>

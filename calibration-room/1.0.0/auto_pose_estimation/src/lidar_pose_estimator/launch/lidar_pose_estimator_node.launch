@@ -1,0 +1,29 @@
+<launch>
+  <node
+    pkg="lidar_pose_estimator"
+    name="front_lidar_pose_estimator"
+    type="lidar_pose_estimator"
+    output="screen">
+    <!-- ns="front_lidar_pose_estimator"> -->
+    <rosparam param="LIDAR_TOPIC">/scan1</rosparam>
+    <rosparam param="LIDAR_IMAGE_1">/lidar_01_image_01</rosparam>
+    <rosparam param="LIDAR_IMAGE_2">/lidar_01_image_02</rosparam>
+    <rosparam param="LIDAR_REFERENCE">/lidar_01_reference</rosparam>
+    <rosparam param="LIDAR_CURRENT">/lidar_01_current</rosparam>
+    <rosparam param="LIDAR_TF">lidar_01_tf</rosparam>
+  </node>
+
+  <node
+    pkg="lidar_pose_estimator"
+    name="rear_lidar_pose_estimator"
+    type="lidar_pose_estimator"
+    output="screen">
+    <!-- ns="rear_lidar_pose_estimator"> -->
+      <rosparam param="LIDAR_TOPIC">/scan2</rosparam> value="/scan2" />
+      <rosparam param="LIDAR_IMAGE_1">/lidar_02_image_01</rosparam>
+      <rosparam param="LIDAR_IMAGE_2">/lidar_02_image_02</rosparam>
+      <rosparam param="LIDAR_REFERENCE">/lidar_02_reference</rosparam>
+      <rosparam param="LIDAR_CURRENT">/lidar_02_current</rosparam>
+      <rosparam param="LIDAR_TF">lidar_02_tf</rosparam>
+  </node>
+</launch>

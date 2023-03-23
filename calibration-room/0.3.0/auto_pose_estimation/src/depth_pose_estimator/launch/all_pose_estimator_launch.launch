@@ -1,0 +1,26 @@
+<launch>
+  <include file="$(find astra_camera)/launch/stereo_s_u3.launch" />
+  <include file="$(find lidar_pose_estimator)/launch/lidar_pose_estimator_node.launch" />
+  <include file="$(find camera_pose_estimator)/launch/camera_pose_estimator_node.launch" />
+
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
+    <arg name="port" value="9090"/>
+  </include>
+
+  <rosparam
+    ns="depth_pose_estimator"
+    command="load"
+    file="$(find depth_pose_estimator)/params/depth_pose_estimator_params.yaml"
+  />
+  <node
+    name="depth_pose_estimator"
+    pkg="depth_pose_estimator"
+    type="depth_pose_estimator"
+    output="screen"
+  />
+
+  <!-- <param name="robot_description" textfile="$(find depth_pose_estimator)/urdf/depth_pose_estimator_urdf.urdf" /> -->
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
+
+  <!-- <node type="rviz" name="rviz" pkg="rviz" args="-d $(find depth_pose_estimator)/rviz/all_pose_estimator_rviz.rviz" /> -->
+</launch>

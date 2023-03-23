@@ -1,0 +1,11 @@
+Astra Camera Stereo_s_u3 에서 depth_pose_estimator 또는 depth_chessboard_pose_estimator 는 다음의 과정으로 포즈를 계산함
+- /camera/color/image_raw 로부터 특정 코너점(이미지 좌표계)을 발견함
+- 위의 과정으로 찾아낸 코너점들의 픽셀값을 /camera/depth_registered/points에 대입하여 각 코너점에 대한 카메라 좌표계 기준의 값을 읽어옴
+- /camera/depth_registered/points를 통해 얻어낸 좌표값을 월드좌표계로 회전이동변환하므로써 카메라의 XYZ, RPY를 도출함
+
+문제는 /camera/color/image_raw와 /camera/depth_registered/points가 보는 위치 및 자세가 다르다는 것
+따라서, depth_center_finder 패키지는 두 값을 일치시키기 위한 R|t 값을 계산하여 저장하는 기능을 함
+단, /camera/depth_registered/points는 /camera/ir/image_raw와 시점이 같음
+즉, /camera/color/image_raw와 /camera/ir/image_raw 간의 비교로 유의미한 R|t를 얻을 수 있음을 의미함
+
+cf. rostopic echo --noarr /camera/ir/image_raw 와 같이 '--noarr' 옵션을 사용하면 헤더만 볼 수 있음

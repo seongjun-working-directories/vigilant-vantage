@@ -1,0 +1,15 @@
+<launch>
+  <include file="$(find astra_camera)/launch/stereo_s_u3.launch" />
+
+  <rosparam
+    ns="depth_center_finder"
+    command="load"
+    file="$(find depth_center_finder)/params/depth_center_finder_params.yaml"
+  />
+  <node
+    name="depth_center_finder"
+    pkg="depth_center_finder"
+    type="depth_center_finder"
+    output="screen"
+  />
+</launch>

@@ -1,0 +1,77 @@
+# 1 ~ 115
+for (let i=0; i<115; i++) {
+    console.log(Math.tan((0.25 * i) * (Math.PI / 180)) * 1370);
+}
+
+# 116 ~ 360
+for (let i=1; i<=245; i++) {
+    console.log(Math.tan((61.4 - (0.25 * i)) * (Math.PI / 180)) * 750);
+}
+
+# 361 ~ 585
+for (let i=1; i<=225; i++) {
+    console.log(-1 * (Math.tan((0.25 * i) * (Math.PI / 180)) * 750));
+}
+
+# 586 ~ 641
+for (let i=1; i<=56; i++) {
+    console.log(Math.tan((33.58 - (0.25 * i)) * (Math.PI / 180)) * 1130);
+}
+
+# 642 ~ 646
+for (let i=0; i<5; i++) {
+    console.log((Math.tan((70.75 + (0.25 * i)) * (Math.PI / 180)) * 400));
+}
+
+# 647 ~ 720
+for (let i=0; i<73; i++) {
+    console.log(1230 * Math.tan((18 - (0.25 * i)) * (Math.PI / 180)));
+}
+
+# 대칭 of 647 ~ 720
+const arr = [];
+for (let i=0; i<73; i++) {
+    arr.push((1230 * Math.tan((18 - (0.25 * i)) * (Math.PI / 180))).toFixed(3));
+}
+const reversed_arr = arr.reverse();
+reversed_arr.forEach(ele=>console.log(ele));
+
+# 대칭 of 642 ~ 646
+const arr = [];
+for (let i=0; i<5; i++) {
+    arr.push((Math.tan((70.75 + (0.25 * i)) * (Math.PI / 180)) * 400));
+}
+const reversed_arr = arr.reverse();
+reversed_arr.forEach(ele=>console.log(ele.toFixed(3)));
+
+# 대칭 of 586 ~ 641
+const arr = [];
+for (let i=1; i<=56; i++) {
+    arr.push(Math.tan((33.58 - (0.25 * i)) * (Math.PI / 180)) * 1130);
+}
+const reversed_arr = arr.reverse();
+reversed_arr.forEach(ele=>console.log(ele.toFixed(3)));
+
+# 대칭 of 361 ~ 585
+const arr = [];
+for (let i=1; i<=225; i++) {
+    arr.push(-1 * (Math.tan((0.25 * i) * (Math.PI / 180)) * 750));
+}
+const reversed_arr = arr.reverse();
+reversed_arr.forEach(ele=>console.log(ele.toFixed(3)));
+
+# 대칭 of 116 ~ 360
+const arr = [];
+for (let i=1; i<=245; i++) {
+    arr.push(Math.tan((61.4 - (0.25 * i)) * (Math.PI / 180)) * 750);
+}
+const reversed_arr = arr.reverse();
+reversed_arr.forEach(ele=>console.log(ele.toFixed(3)));
+
+# 대칭 of 1 ~ 115
+const arr = [];
+for (let i=0; i<115; i++) {
+    arr.push(Math.tan((0.25 * i) * (Math.PI / 180)) * 1370);
+}
+const reversed_arr = arr.reverse();
+reversed_arr.forEach(ele=>console.log(ele.toFixed(3)));

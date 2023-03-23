@@ -1,0 +1,72 @@
+<robot name="cona">
+
+    <!-- target links -->
+	<link name="base_link" />
+	<link name="lidar1" />
+	<link name="lidar2" />
+	<link name="lidar3" />
+	<link name="depth1" />
+    <link name="depth2" />
+	<link name="depth3" />
+    <link name="camera1" />
+
+    <!-- other links -->
+    <link name="laser_multi"/>
+
+    <!-- target lidar 1 -->
+	<joint name="robot2lidar1" type="fixed">
+		<parent link="base_link" />
+		<child link="lidar1" />
+		<origin xyz="1.262 -0.324 0" rpy="0 0 0.007" />
+	</joint>
+
+    <!-- target lidar 2 -->
+	<joint name="robot2lidar2" type="fixed">
+		<parent link="base_link" />
+		<child link="lidar2" />
+		<origin xyz="-4.294 -4.350 0" rpy="0 0 0.009" />
+	</joint>
+
+    <!-- target lidar 3 -->
+	<joint name="robot2lidar3" type="fixed">
+		<parent link="base_link" />
+		<child link="lidar3" />
+		<origin xyz="0.0 0.0 0.0" rpy="0 0.0 0" />
+	</joint>
+
+    <!-- target depth 1 -->
+	<joint name="robot2depth1" type="fixed">
+		<parent link="base_link" />
+		<child link="depth1 "/>
+		<origin xyz="0.486 0.182 0.744" rpy="0.674 -0.674 -0.208" />
+	</joint>
+
+    <!-- target depth 2 -->
+	<joint name="robot2depth2" type="fixed">
+		<parent link="base_link" />
+		<child link="depth2" />
+		<origin xyz="0.486 0.182 0.744" rpy="0.674 -0.674 -0.208" />
+	</joint>
+
+    <!-- target depth 3 -->
+	<joint name="robot2depth3" type="fixed">
+		<parent link="base_link" />
+		<child link="depth3" />
+		<origin xyz="0.486 0.182 0.744" rpy="0.674 -0.674 -0.208" />
+	</joint>
+
+    <!-- target camera 1 -->
+    <joint name="robot2camera1" type="fixed">
+        <parent link="base_link" />
+        <child link="camera1" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <!-- others -->
+    <joint name="robot2laser_multi" type="fixed">
+		<parent link="base_link" />
+		<child link="laser_multi" />
+		<origin xyz="0 0 0" rpy="0 0 0" />
+	</joint>
+
+</robot>

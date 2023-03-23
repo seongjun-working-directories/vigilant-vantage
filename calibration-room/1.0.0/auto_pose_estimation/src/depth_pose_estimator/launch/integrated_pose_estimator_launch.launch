@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find lidar_pose_estimator)/launch/lidar_pose_estimator_node.launch" />
+  <include file="$(find camera_pose_estimator)/launch/camera_pose_estimator_node.launch" />
+  <include file="$(find depth_pose_estimator)/launch/depth_pose_estimator_launch.launch" />
+</launch>

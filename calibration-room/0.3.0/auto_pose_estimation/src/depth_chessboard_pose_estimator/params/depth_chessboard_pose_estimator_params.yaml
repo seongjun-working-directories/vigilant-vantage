@@ -1,0 +1,7 @@
+# Chessboard 규격에 대한 파라미터
+chessboard_edge_size: 0.0310
+chessboard_width: 11
+chessboard_height: 8
+
+# 카메라 프레임에 대한 파라미터
+frames_per_seconds: 10

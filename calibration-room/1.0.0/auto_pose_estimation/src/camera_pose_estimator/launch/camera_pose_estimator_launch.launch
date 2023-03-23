@@ -1,0 +1,7 @@
+<launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+     <arg name="port" value="9090"/>
+  </include>
+
+  <node name="camera_pose_estimator" pkg="camera_pose_estimator" type="camera_pose_estimator" output="screen" />
+</launch>

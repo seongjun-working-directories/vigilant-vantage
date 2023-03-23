@@ -1,0 +1,7 @@
+<launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+    <arg name="port" value="9090"/>
+  </include>
+
+  <include file="$(find depth_pose_estimator)/launch/depth_pose_estimator_node.launch" />
+</launch>

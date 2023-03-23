@@ -1,0 +1,13 @@
+<launch>
+  <rosparam
+    ns="depth_pose_estimator"
+    command="load"
+    file="$(find depth_pose_estimator)/params/depth_pose_estimator_params.yaml"
+  />
+  <node
+    name="depth_pose_estimator"
+    pkg="depth_pose_estimator"
+    type="depth_pose_estimator"
+    output="screen"
+  />
+</launch>

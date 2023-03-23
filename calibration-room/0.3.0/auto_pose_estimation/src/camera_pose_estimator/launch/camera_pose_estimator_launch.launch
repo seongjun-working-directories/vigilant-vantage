@@ -1,0 +1,19 @@
+<launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+     <arg name="port" value="9090"/>
+  </include>
+
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/penga" />
+    <param name="image_width" value="1280" />
+    <param name="image_height" value="720" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  
+  <node name="camera_pose_estimator" pkg="camera_pose_estimator" type="camera_pose_estimator" output="screen">
+    <remap from="image" to="/usb_cam/image_raw/"/>
+    <param name="autosize" value="true" />
+  </node>
+</launch>

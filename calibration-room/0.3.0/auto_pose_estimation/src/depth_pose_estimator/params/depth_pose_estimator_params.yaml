@@ -1,0 +1,14 @@
+# Arucoboard 규격에 대한 파라미터 1
+marker_size: 0.148  # meter
+marker_seperation_size: 0.0148 # meter
+arucoboard_width: 5   # y
+arucoboard_height: 7  # x
+
+# # Arucoboard 규격에 대한 파라미터 2
+# marker_size: 0.033  # meter
+# marker_seperation_szie: 0.0033  # meter
+# arucoboard_width: 5   # y
+# arucoboard_height: 7  # x
+
+# 카메라 프레임에 대한 파라미터
+frames_per_seconds: 10

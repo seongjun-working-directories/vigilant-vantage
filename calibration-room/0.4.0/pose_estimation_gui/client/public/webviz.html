@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <!-- sudo apt-get install ros-noetic-tf2-web-republisher -->
+  <!-- rosrun tf2_web_republisher tf2_web_republisher -->
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Calibration Room</title>
+
+    <script src="/builder/three.js"></script>
+    <script src="/builder/eventemitter2.js"></script>
+    <script src="/builder/roslib.js"></script>
+    <script src="/builder/ros3d.js"></script>
+    <link rel="stylesheet" href="/style.css">
+
+    <script>
+      let ros, viewer, gridClient, tfClient, front_scan, rear_scan, depth_world_pointcloud, depth_camera_pointcloud;
+
+      function init() {
+        // Connect to ROS.
+        ros = new ROSLIB.Ros({
+          url : 'ws://localhost:9090'
+        });
+
+        // Create the main viewer.
+        viewer = new ROS3D.Viewer({
+          divID : 'viewer',
+          width : 900,
+          height : 700,
+          antialias : true,
+        });
+
+        // Setup the marker client.
+        gridClient = new ROS3D.OccupancyGridClient({
+          ros : ros,
+          rootObject : viewer.scene,
+          continuous: true,
+          visible: true,
+        });
+
+        tfClient = new ROSLIB.TFClient({
+          ros : ros,
+          angularThres : 0.01,
+          transThres : 0.01,
+          rate : 10.0,
+          fixedFrame : 'map',
+        });
+
+        front_scan = new ROS3D.LaserScan({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/scan1',
+          material: { size: 0.05, color: 0xff0000 },   // red
+        });
+
+        rear_scan = new ROS3D.LaserScan({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/scan2',
+          material: { size: 0.05, color: 0x00ff00 },   // green
+        });
+
+        depth_world_pointcloud = new ROS3D.PointCloud2({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/depth_world_corners_messages',
+          material: { size: 0.05, color: 0xffffff },   // white
+        });
+
+        depth_camera_pointcloud = new ROS3D.PointCloud2({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/depth_camera_corners_messages',
+          material: { size: 0.05, color: 0x0000ff },   // blue
+        });
+      }
+      </script>
+  </head>
+  
+  <body onload="init()">
+    <div id="app">
+      <!-- <h1>Webviz for <a href='/'>Calibration Room</a></h1> -->
+      <div class="row mb-3">
+        <h2>WEBVIZ for <a href='/'>Calibration Room</a></h2>
+      </div>
+      <div class="row">
+        <span style="color: grey;">
+          페이지가 작동하지 않을 경우 다음의 커맨드를 우선 실행하시기 바랍니다.
+        </span>
+        <ol>
+          <li style="color: white;"><tt>sudo apt-get install ros-noetic-tf2-ros</tt></li>
+          <li style="color: white;"><tt>sudo apt-get install ros-noetic-tf2-web-republisher</tt></li>
+        </ol>
+        <br/>
+      </div>
+      <div class="row">
+        <div id="viewer"></div>
+        <span style="color: grey;">
+          [ RED : FRONT LIDAR, GREEN : REAR LIDAR, BLUE : DEPTH CAMERA ]<br/>
+        </span>
+      </div>
+      <div class="row">
+        <br/>
+        <h4>Author - Park Seongjun [ hamishcode@gmail.com ]</h4>
+        <p><em>Last publish date: 2023-01-20</em></p>
+      </div>
+    </div>
+  </body>
+
+</html>

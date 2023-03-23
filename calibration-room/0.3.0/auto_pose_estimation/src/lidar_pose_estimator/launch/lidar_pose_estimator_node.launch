@@ -1,0 +1,6 @@
+<launch>
+  <!-- <include file="$(find lsm10_v2)/launch/lsm10_v2.launch" /> -->
+  <include file="$(find ls01b_v2)/launch/ls01b_v2.launch" />
+
+  <node pkg="lidar_pose_estimator" name="lidar_pose_estimator" type="lidar_pose_estimator" output="screen" />
+</launch>

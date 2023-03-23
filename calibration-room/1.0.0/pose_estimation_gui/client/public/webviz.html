@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <!-- sudo apt-get install ros-noetic-tf2-web-republisher -->
+  <!-- rosrun tf2_web_republisher tf2_web_republisher -->
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Calibration Room</title>
+
+    <script src="/builder/three.js"></script>
+    <script src="/builder/eventemitter2.js"></script>
+    <script src="/builder/roslib.js"></script>
+    <script src="/builder/ros3d.js"></script>
+    <link rel="stylesheet" href="/style.css">
+
+    <script>
+      let ros, viewer, gridClient, tfClient, scan1, scan2, scan3, depth_world_pointcloud, depth_camera_pointcloud;
+
+      function init() {
+        // Connect to ROS.
+        ros = new ROSLIB.Ros({
+          url : 'ws://localhost:9090'
+        });
+
+        // Create the main viewer.
+        viewer = new ROS3D.Viewer({
+          divID : 'viewer',
+          width : 900,
+          height : 700,
+          antialias : true,
+        });
+
+        // Setup the marker client.
+        gridClient = new ROS3D.OccupancyGridClient({
+          ros : ros,
+          rootObject : viewer.scene,
+          continuous: true,
+          visible: true,
+        });
+
+        tfClient = new ROSLIB.TFClient({
+          ros : ros,
+          angularThres : 0.01,
+          transThres : 0.01,
+          rate : 10.0,
+          fixedFrame : 'map',
+        });
+
+        scan1 = new ROS3D.LaserScan({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/scan1',
+          material: { size: 0.08, color: 0xffff00 },
+        });
+
+        scan2 = new ROS3D.LaserScan({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/scan2',
+          material: { size: 0.08, color: 0xff00ff },
+        });
+        
+        scan3 = new ROS3D.LaserScan({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/scan3',
+          material: { size: 0.08, color: 0x00ffff },
+        });
+
+        depth_world_pointcloud = new ROS3D.PointCloud2({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/depth_01_world_pointcloud',
+          material: { size: 0.08, color: 0xff0000 },
+        });
+
+        depth_camera_pointcloud = new ROS3D.PointCloud2({
+          ros: ros,
+          tfClient: tfClient,
+          rootObject: viewer.scene,
+          topic: '/depth_01_camera_pointcloud',
+          material: { size: 0.08, color: 0x00ff00 },
+        });
+      }
+      </script>
+  </head>
+
+  <body onload="init()">
+    <div id="app" style="padding: 0px;">
+      <!-- <h1>Webviz for <a href='/'>Calibration Room</a></h1> -->
+      <div style="margin-bottom: 10px;">
+        <h2 style="margin: 20px;">WEBVIZ for <a href='/'>Calibration Room</a></h2>
+        <span style="color: grey;">
+          <b>[ RED : FRONT LIDAR, GREEN : REAR LIDAR, BLUE : DEPTH CAMERA ]</b>
+        </span>
+      </div>
+      <div>
+        <div id="viewer"></div>
+        <span style="color: grey;">
+          <em>Required Packages : ros-noetic-tf2-ros, ros-noetic-tf2-web-republisher</em>
+        </span>
+      </div>
+      <!--
+        <div class="row">
+          <br/>
+          <h4>Author - Park Seongjun [ hamishcode@gmail.com ]</h4>
+          <p><em>Last publish date: 2023-01-20</em></p>
+        </div>
+      -->
+    </div>
+  </body>
+
+</html>

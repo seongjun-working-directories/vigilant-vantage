@@ -1,0 +1,11 @@
+DEPTH_COLOR_TOPIC: /camera/color/image_raw
+DEPTH_REGISTERED_TOPIC: /camera/depth_registered/points
+DEPTH_TF: /depth_tf
+
+# Chessboard 규격에 대한 파라미터
+CHESSBOARD_EDGE_SIZE: 0.0310
+CHESSBOARD_WIDTH: 11
+CHESSBOARD_HEIGHT: 8
+
+# 카메라 프레임에 대한 파라미터
+FRAMES_PER_SECONDS: 10

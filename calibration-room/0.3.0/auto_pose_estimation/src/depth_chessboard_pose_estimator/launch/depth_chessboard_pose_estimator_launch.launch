@@ -1,0 +1,21 @@
+<launch>
+  <include file="$(find astra_camera)/launch/stereo_s_u3.launch" />
+
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
+    <arg name="port" value="9090" />
+  </include>
+
+  <rosparam
+    ns="depth_chessboard_pose_estimator"
+    command="load"
+    file="$(find depth_chessboard_pose_estimator)/params/depth_chessboard_pose_estimator_params.yaml"
+  />
+  <node
+    name="depth_chessboard_pose_estimator"
+    pkg="depth_chessboard_pose_estimator"
+    type="depth_chessboard_pose_estimator"
+    output="screen"
+  />
+
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find depth_pose_estimator)/rviz/depth_pose_estimator_rviz.rviz" />
+</launch>

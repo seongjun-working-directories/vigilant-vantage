@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sudo cp `rospack find depth_pose_estimator`/90-customized_camera_rules.rules /etc/udev/rules.d
+
+echo ""
+echo "Restarting udev"
+echo ""
+echo "Error Messages Start >> "
+echo ""
+
+sudo service udev reload
+sudo service udev restart
+
+echo ""
+echo "<< Error Messages End"
+echo ""
